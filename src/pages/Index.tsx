@@ -602,7 +602,6 @@ const Index = () => {
               <Icon name="ChevronRight" size={20} className="text-gray-600" />
             </button>
           </div>
-          </div>
         </div>
       </section>
 
