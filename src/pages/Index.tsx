@@ -64,7 +64,7 @@ const Index = () => {
 
 Для получения точного расчета свяжитесь с нами!`
 
-    const telegramUrl = `https://t.me/CertEkoProm_bot?start=${encodeURIComponent(message)}`
+    const telegramUrl = `https://t.me/SertEcoPromBot?start=${encodeURIComponent(message)}`
     window.open(telegramUrl, '_blank')
   }
   
@@ -209,14 +209,13 @@ const Index = () => {
             <a href="#faq" className="text-gray-700 hover:text-blue-600 transition-colors">FAQ</a>
           </nav>
           <div className="flex space-x-2 animate-fade-in-right">
-            <Dialog open={showCalculator} onOpenChange={setShowCalculator}>
-              <DialogTrigger asChild>
-                <Button variant="outline">
-                  <Icon name="Calculator" className="mr-2" size={16} />
-                  Калькулятор
-                </Button>
-              </DialogTrigger>
-            </Dialog>
+            <Button 
+              variant="outline"
+              onClick={() => window.open('https://t.me/SertEcoPromBot', '_blank')}
+            >
+              <Icon name="Calculator" className="mr-2" size={16} />
+              Калькулятор
+            </Button>
             <Button className="bg-blue-600 hover:bg-blue-700">
             <Icon name="Phone" className="mr-2" size={16} />
             Позвонить
