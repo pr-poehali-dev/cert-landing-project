@@ -159,7 +159,11 @@ const Index = () => {
       <header className="bg-white border-b border-gray-200 sticky top-0 z-30 backdrop-blur-sm bg-white/95">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2 animate-fade-in-left">
-            <Icon name="Shield" className="text-blue-600" size={32} />
+            <img 
+              src="https://cdn.poehali.dev/files/0a530161-0435-431a-a1e0-85e903d56514.jpg" 
+              alt="ГК СертЭкоПром" 
+              className="w-8 h-8 rounded-full"
+            />
             <h1 className="text-2xl font-bold text-gray-900">ГК СертЭкоПром</h1>
           </div>
           <nav className="hidden md:flex space-x-8">
