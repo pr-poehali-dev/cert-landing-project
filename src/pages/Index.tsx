@@ -1,14 +1,353 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import Icon from "@/components/ui/icon"
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
-    </div>
-  );
-};
+  const [showChat, setShowChat] = useState(false)
+  const [chatMessage, setChatMessage] = useState('')
 
-export default Index;
+  const services = [
+    {
+      title: "Селлеры",
+      description: "Быстрая сертификация для маркетплейсов",
+      icon: "Store",
+      features: ["Сроки от 1 дня", "Все маркетплейсы", "Дистанционно"]
+    },
+    {
+      title: "Производители", 
+      description: "Полный цикл сертификации продукции",
+      icon: "Factory",
+      features: ["ТР ТС", "ГОСТ Р", "Протоколы испытаний"]
+    },
+    {
+      title: "Импортеры",
+      description: "Документы для ввоза и продажи",
+      icon: "Ship",
+      features: ["Таможенное оформление", "Декларации", "Сертификаты"]
+    }
+  ]
+
+  const benefits = [
+    { icon: "Clock", title: "Сроки от 1 дня", description: "Минимальное время оформления" },
+    { icon: "Shield", title: "Только аккредитованные органы", description: "Гарантия законности" },
+    { icon: "FileCheck", title: "Работа по договору", description: "Полная юридическая защита" },
+    { icon: "Zap", title: "Дистанционное оформление", description: "Не нужно приезжать в офис" }
+  ]
+
+  const documents = [
+    "Сертификат соответствия ТР ТС",
+    "Декларация ТР ТС", 
+    "Сертификат ГОСТ Р",
+    "Протоколы испытаний"
+  ]
+
+  const stats = [
+    { value: "1000+", label: "документов в 2024" },
+    { value: "10+", label: "лет опыта" },
+    { value: "98%", label: "заказов в срок" }
+  ]
+
+  const faqItems = [
+    {
+      question: "Чем отличается сертификат от декларации?",
+      answer: "Выбор зависит от категории продукции и требований регламента. Мы подберем документ по ТН ВЭД/ОКПД2 и назначению товара."
+    },
+    {
+      question: "Какие документы нужны для оформления?",
+      answer: "Минимально: карточка товара/описание, ИНН/ОГРН, договор поставки/изготовления, образцы при необходимости. Список уточняем по продукту."
+    },
+    {
+      question: "Сколько действует сертификат?",
+      answer: "Срок действия зависит от схемы и регламента. Как правило, 1–5 лет. Подберем оптимальную схему под вашу задачу."
+    },
+    {
+      question: "Можно ли оформить дистанционно?",
+      answer: "Да, большинство документов можно оформить полностью дистанционно. Приезжать в офис не нужно."
+    }
+  ]
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <Icon name="Shield" className="text-blue-600" size={32} />
+            <h1 className="text-2xl font-bold text-gray-900">CertPro</h1>
+          </div>
+          <nav className="hidden md:flex space-x-8">
+            <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors">Услуги</a>
+            <a href="#benefits" className="text-gray-700 hover:text-blue-600 transition-colors">Преимущества</a>
+            <a href="#faq" className="text-gray-700 hover:text-blue-600 transition-colors">FAQ</a>
+          </nav>
+          <Button className="bg-blue-600 hover:bg-blue-700">
+            <Icon name="Phone" className="mr-2" size={16} />
+            Позвонить
+          </Button>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="bg-gradient-to-b from-blue-50 to-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <Badge className="mb-4 bg-blue-100 text-blue-800">Сертификация ТР ТС и ГОСТ Р</Badge>
+              <h1 className="text-5xl font-bold text-gray-900 mb-6">
+                Сертификаты для запуска и масштабирования производства
+              </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                Подготовим все документы от 1 дня. Работаем только с аккредитованными органами по договору.
+              </p>
+              <div className="flex flex-wrap gap-4 mb-8">
+                {stats.map((stat, index) => (
+                  <div key={index} className="text-center">
+                    <div className="text-3xl font-bold text-blue-600">{stat.value}</div>
+                    <div className="text-sm text-gray-500">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                  Получить расчет
+                </Button>
+                <Button variant="outline" size="lg" onClick={() => setShowChat(true)}>
+                  <Icon name="MessageCircle" className="mr-2" size={16} />
+                  Онлайн-консультант
+                </Button>
+              </div>
+            </div>
+            <Card className="p-6 shadow-xl">
+              <h3 className="text-2xl font-semibold mb-4">Получите расчет за 5 минут</h3>
+              <form className="space-y-4">
+                <Input placeholder="Ваше имя" />
+                <Input placeholder="Телефон" type="tel" />
+                <Input placeholder="Email" type="email" />
+                <Textarea placeholder="Опишите вашу продукцию или вставьте ссылку" />
+                <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                  Получить расчет
+                </Button>
+              </form>
+              <p className="text-xs text-gray-500 mt-4">
+                Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+              </p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Для кого работаем</h2>
+            <p className="text-xl text-gray-600">Решаем задачи разных категорий клиентов</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
+                <CardContent className="p-0">
+                  <Icon name={service.icon} className="text-blue-600 mb-4" size={48} />
+                  <h3 className="text-2xl font-semibold mb-2">{service.title}</h3>
+                  <p className="text-gray-600 mb-4">{service.description}</p>
+                  <ul className="space-y-2">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center text-sm">
+                        <Icon name="Check" className="text-green-500 mr-2" size={16} />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Problems & Benefits */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Problems */}
+            <div>
+              <h2 className="text-3xl font-bold text-red-600 mb-8">Боли без сертификатов</h2>
+              <div className="space-y-4">
+                {[
+                  "Партия готова, но нет сертификата — простаивает склад",
+                  "Риски штрафов при проверках",
+                  "Сложно понять, какой документ нужен",
+                  "Долгие сроки оформления",
+                  "Риск поддельных документов"
+                ].map((problem, index) => (
+                  <div key={index} className="flex items-start">
+                    <Icon name="X" className="text-red-500 mr-3 mt-1" size={16} />
+                    <span className="text-gray-700">{problem}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Benefits */}
+            <div>
+              <h2 className="text-3xl font-bold text-green-600 mb-8">Выгоды с нами</h2>
+              <div className="space-y-4">
+                {[
+                  "Подбор правильного документа под продукцию",
+                  "Минимальные сроки — от 1 дня",
+                  "Работа только с аккредитованными органами",
+                  "Полная юридическая значимость",
+                  "Дистанционное оформление"
+                ].map((benefit, index) => (
+                  <div key={index} className="flex items-start">
+                    <Icon name="Check" className="text-green-500 mr-3 mt-1" size={16} />
+                    <span className="text-gray-700">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section id="benefits" className="py-20 bg-blue-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Почему нам доверяют</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {benefits.map((benefit, index) => (
+              <div key={index} className="text-center">
+                <Icon name={benefit.icon} className="text-blue-600 mx-auto mb-4" size={48} />
+                <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
+                <p className="text-gray-600">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Documents */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Документы, с которыми работаем</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {documents.map((doc, index) => (
+              <Card key={index} className="p-6 text-center hover:shadow-lg transition-shadow">
+                <Icon name="FileText" className="text-blue-600 mx-auto mb-4" size={40} />
+                <h3 className="font-semibold">{doc}</h3>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Часто задаваемые вопросы</h2>
+          </div>
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible>
+              {faqItems.map((item, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left">{item.question}</AccordionTrigger>
+                  <AccordionContent>{item.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <Icon name="Shield" className="text-blue-400" size={32} />
+                <h3 className="text-2xl font-bold">CertPro</h3>
+              </div>
+              <p className="text-gray-400">
+                Запустите или расширьте производство без бюрократических задержек
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Контакты</h4>
+              <div className="space-y-2">
+                <div className="flex items-center">
+                  <Icon name="Phone" className="mr-2" size={16} />
+                  <span>+7 (495) 123-45-67</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="Mail" className="mr-2" size={16} />
+                  <span>info@certpro.ru</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Гарантии</h4>
+              <ul className="text-gray-400 space-y-1">
+                <li>Официальные документы в реестре ФСА</li>
+                <li>Работа по договору</li>
+                <li>Конфиденциальность данных</li>
+                <li>Возврат при невыполнении условий</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* Online Chat */}
+      {showChat && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-md">
+            <div className="flex justify-between items-center p-4 border-b">
+              <h3 className="font-semibold">Онлайн-консультант</h3>
+              <Button variant="ghost" size="sm" onClick={() => setShowChat(false)}>
+                <Icon name="X" size={16} />
+              </Button>
+            </div>
+            <div className="p-4 h-64 overflow-y-auto bg-gray-50">
+              <div className="bg-white p-3 rounded-lg mb-3 shadow-sm">
+                <p className="text-sm">👋 Здравствуйте! Я помогу с выбором документов для вашей продукции. Расскажите, что нужно сертифицировать?</p>
+              </div>
+            </div>
+            <div className="p-4 border-t">
+              <div className="flex space-x-2">
+                <Input 
+                  placeholder="Напишите ваш вопрос..." 
+                  value={chatMessage}
+                  onChange={(e) => setChatMessage(e.target.value)}
+                />
+                <Button size="sm">
+                  <Icon name="Send" size={16} />
+                </Button>
+              </div>
+            </div>
+          </Card>
+        </div>
+      )}
+
+      {/* Floating Chat Button */}
+      <Button
+        className="fixed bottom-6 right-6 rounded-full w-12 h-12 bg-blue-600 hover:bg-blue-700 shadow-lg z-40"
+        onClick={() => setShowChat(true)}
+      >
+        <Icon name="MessageCircle" size={24} />
+      </Button>
+    </div>
+  )
+}
+
+export default Index
