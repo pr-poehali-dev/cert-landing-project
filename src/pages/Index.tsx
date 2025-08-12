@@ -466,6 +466,19 @@ const Index = () => {
               </ul>
             </div>
           </div>
+          <div className="border-t border-gray-800 mt-8 pt-6 text-center">
+            <p className="text-gray-400 text-sm">
+              © 2024 ГК СертЭкоПром. Все права защищены. | {' '}
+              <a 
+                href="https://docs.google.com/document/d/19RKw5BdlbItv9b-OctCKNYx3yX6e2GNeH80mRmHY_mM/edit?usp=sharing" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 transition-colors underline"
+              >
+                Политика конфиденциальности
+              </a>
+            </p>
+          </div>
         </div>
       </footer>
 
