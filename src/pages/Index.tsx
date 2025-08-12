@@ -30,6 +30,43 @@ const Index = () => {
 
   // Animation on scroll
   const observerRef = useRef<IntersectionObserver>()
+
+  // Telegram Bot integration
+  const sendToTelegram = () => {
+    const docTypeNames = {
+      'cert-tr-ts': 'Сертификат ТР ТС',
+      'declaration-tr-ts': 'Декларация ТР ТС', 
+      'cert-gost': 'Сертификат ГОСТ Р',
+      'protocol': 'Протокол испытаний'
+    }
+    
+    const categoryNames = {
+      'food': 'Пищевые продукты',
+      'electronics': 'Электроника',
+      'textile': 'Текстиль',
+      'toys': 'Игрушки',
+      'construction': 'Стройматериалы'
+    }
+    
+    const urgencyNames = {
+      '1-day': '1 день',
+      '3-days': '3 дня', 
+      '7-days': '7 дней',
+      '14-days': '14 дней'
+    }
+
+    const message = `🧮 Расчет стоимости сертификации
+
+📋 Тип документа: ${docTypeNames[calculatorData.documentType as keyof typeof docTypeNames]}
+🏷️ Категория: ${categoryNames[calculatorData.productCategory as keyof typeof categoryNames]}  
+⏰ Срочность: ${urgencyNames[calculatorData.urgency as keyof typeof urgencyNames]}
+💰 Стоимость: ${calculatedPrice?.toLocaleString()} ₽
+
+Для получения точного расчета свяжитесь с нами!`
+
+    const telegramUrl = `https://t.me/CertEkoProm_bot?start=${encodeURIComponent(message)}`
+    window.open(telegramUrl, '_blank')
+  }
   
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -494,16 +531,31 @@ const Index = () => {
               </Card>
             )}
 
-            <Button 
-              className="w-full" 
-              onClick={() => {
-                setShowCalculator(false)
-                alert('Расчет сохранен! Наш менеджер свяжется с вами для уточнения деталей.')
-              }}
-              disabled={!calculatedPrice}
-            >
-              Получить точный расчет
-            </Button>
+            <div className="space-y-2">
+              <Button 
+                className="w-full bg-blue-600 hover:bg-blue-700" 
+                onClick={() => {
+                  sendToTelegram()
+                  setShowCalculator(false)
+                }}
+                disabled={!calculatedPrice}
+              >
+                <Icon name="Send" className="mr-2" size={16} />
+                Отправить в Telegram
+              </Button>
+              
+              <Button 
+                variant="outline"
+                className="w-full" 
+                onClick={() => {
+                  setShowCalculator(false)
+                  alert('Расчет сохранен! Наш менеджер свяжется с вами для уточнения деталей.')
+                }}
+                disabled={!calculatedPrice}
+              >
+                Получить точный расчет
+              </Button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
