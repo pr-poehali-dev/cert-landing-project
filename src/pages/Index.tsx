@@ -79,15 +79,6 @@ const Index = () => {
     return () => observer.disconnect()
   }, [])
 
-  // Автопрокрутка отзывов
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentReview((prev) => (prev + 1) % reviews.length)
-    }, 4000) // Каждые 4 секунды
-    
-    return () => clearInterval(interval)
-  }, [reviews.length])
-
   // Animation on scroll
   const observerRef = useRef<IntersectionObserver>()
 
@@ -291,6 +282,15 @@ const Index = () => {
       answer: "Да, большинство документов можно оформить полностью дистанционно. Приезжать в офис не нужно."
     }
   ]
+
+  // Автопрокрутка отзывов
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentReview((prev) => (prev + 1) % reviews.length)
+    }, 4000) // Каждые 4 секунды
+    
+    return () => clearInterval(interval)
+  }, [reviews.length])
 
   return (
     <div className="min-h-screen bg-white">
