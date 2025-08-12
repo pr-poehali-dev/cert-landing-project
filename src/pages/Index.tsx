@@ -429,8 +429,12 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="scroll-animate">
               <div className="flex items-center space-x-2 mb-4">
-                <Icon name="Shield" className="text-blue-400" size={32} />
-                <h3 className="text-2xl font-bold">CertPro</h3>
+                <img 
+                  src="https://cdn.poehali.dev/files/0659d6da-acf0-4dd3-9b84-ee6832ab2b4f.jpg" 
+                  alt="ГК СертЭкоПром Logo" 
+                  className="w-8 h-8 rounded-full"
+                />
+                <h3 className="text-2xl font-bold">ГК СертЭкоПром</h3>
               </div>
               <p className="text-gray-400">
                 Запустите или расширьте производство без бюрократических задержек
