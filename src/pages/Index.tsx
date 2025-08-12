@@ -174,6 +174,39 @@ const Index = () => {
     { value: "98%", label: "заказов в срок" }
   ]
 
+  const reviews = [
+    {
+      text: "Карточки на Wildberries заблокировали, потому что не было сертификата. Нашла эту компанию по совету коллеги, оформили за два дня. Всё удалённо, без лишних бумаг, товар снова в продаже.",
+      author: "Анна К.",
+      location: "Москва",
+      type: "Селлер (Wildberries)"
+    },
+    {
+      text: "Загрузил новый товар на Ozon, и сразу запросили декларацию. Ребята сами подобрали нужную, сделали быстро, а я даже не отвлекался от работы. Удобно, что всё онлайн.",
+      author: "Игорь Л.",
+      location: "Санкт-Петербург",
+      type: "Селлер (Ozon)"
+    },
+    {
+      text: "Запускали линию по производству соусов, нужен был полный пакет документов: ТР ТС, протоколы испытаний, техдокументация. Всё сделали в срок, помогли пройти проверку без замечаний.",
+      author: "ООО «Продукт-Сервис»",
+      location: "Нижний Новгород",
+      type: "Производитель (пищевая продукция)"
+    },
+    {
+      text: "Везли партию электроники из Китая, на таможне попросили дополнительные сертификаты. Здесь оформили всё за три дня, подобрали правильный код ТН ВЭД. Груз забрали без задержек.",
+      author: "Алексей М.",
+      location: "Владивосток",
+      type: "Импортер (электроника)"
+    },
+    {
+      text: "Для участия в тендере требовался ГОСТ Р и протокол испытаний. Сделали всё под ключ, внесли в реестр, прислали оригиналы. Чётко, без затягивания сроков.",
+      author: "ИП Ковалев",
+      location: "Екатеринбург",
+      type: "Производитель (строительные материалы)"
+    }
+  ]
+
   const faqItems = [
     {
       question: "Чем отличается сертификат от декларации?",
@@ -407,8 +440,41 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Reviews */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16 scroll-animate">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Отзывы клиентов</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Реальные истории наших клиентов о том, как мы помогли им решить задачи с сертификацией</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {reviews.map((review, index) => (
+              <Card key={index} className="p-6 hover:shadow-lg hover:scale-105 transition-all scroll-animate" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="flex items-start mb-4">
+                  <Icon name="Quote" className="text-blue-600 mr-2 flex-shrink-0" size={20} />
+                  <p className="text-gray-700 leading-relaxed">{review.text}</p>
+                </div>
+                <div className="border-t pt-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-semibold text-gray-900">{review.author}</p>
+                      <p className="text-sm text-gray-500">{review.location}</p>
+                    </div>
+                    <div className="text-right">
+                      <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                        {review.type}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
-      <section id="faq" className="py-20 bg-gray-50">
+      <section id="faq" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 scroll-animate">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Часто задаваемые вопросы</h2>
