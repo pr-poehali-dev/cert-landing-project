@@ -162,8 +162,10 @@ const Index = () => {
     "Сертификат соответствия ТР ТС",
     "Декларация ТР ТС", 
     "Сертификат ГОСТ Р",
+    "Декларация ГОСТ Р",
     "Протоколы испытаний",
-    "Свидетельство о государственной регистрации"
+    "Свидетельство о государственной регистрации",
+    "Отказные письма"
   ]
 
   const stats = [
@@ -394,12 +396,12 @@ const Index = () => {
           <div className="text-center mb-16 scroll-animate">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Документы, с которыми работаем</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex flex-wrap justify-center gap-4 max-w-6xl mx-auto">
             {documents.map((doc, index) => (
-              <Card key={index} className="p-6 text-center hover:shadow-lg hover:scale-105 transition-all scroll-animate" style={{ animationDelay: `${index * 0.1}s` }}>
-                <Icon name="FileText" className="text-blue-600 mx-auto mb-4 hover:bounce" size={40} />
-                <h3 className="font-semibold">{doc}</h3>
-              </Card>
+              <div key={index} className="bg-white rounded-lg px-6 py-4 shadow-md hover:shadow-lg hover:scale-105 transition-all scroll-animate flex items-center space-x-3" style={{ animationDelay: `${index * 0.1}s` }}>
+                <Icon name="FileText" className="text-blue-600 hover:bounce" size={24} />
+                <span className="font-semibold text-gray-800 whitespace-nowrap">{doc}</span>
+              </div>
             ))}
           </div>
         </div>
