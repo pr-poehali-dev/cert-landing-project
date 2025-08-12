@@ -13,6 +13,37 @@ import Icon from "@/components/ui/icon"
 const Index = () => {
   const [showChat, setShowChat] = useState(false)
   const [chatMessage, setChatMessage] = useState('')
+  const [visibleStats, setVisibleStats] = useState<boolean[]>([false, false, false])
+  const statsRef = useRef<HTMLDivElement>(null)
+  const [currentReview, setCurrentReview] = useState(0)
+
+  // Анимированный счетчик
+  const useCountUp = (end: number, duration: number = 2000, isVisible: boolean = false) => {
+    const [count, setCount] = useState(0)
+    
+    useEffect(() => {
+      if (!isVisible) return
+      
+      let startTime: number
+      const startValue = 0
+      
+      const animate = (currentTime: number) => {
+        if (!startTime) startTime = currentTime
+        const progress = Math.min((currentTime - startTime) / duration, 1)
+        
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4)
+        setCount(Math.floor(startValue + (end - startValue) * easeOutQuart))
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate)
+        }
+      }
+      
+      requestAnimationFrame(animate)
+    }, [end, duration, isVisible])
+    
+    return count
+  }
   const [showCalculator, setShowCalculator] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
@@ -27,6 +58,35 @@ const Index = () => {
     urgency: ''
   })
   const [calculatedPrice, setCalculatedPrice] = useState<number | null>(null)
+
+  // Intersection Observer для анимации статистики
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleStats([true, true, true])
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Автопрокрутка отзывов
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentReview((prev) => (prev + 1) % reviews.length)
+    }, 4000) // Каждые 4 секунды
+    
+    return () => clearInterval(interval)
+  }, [reviews.length])
 
   // Animation on scroll
   const observerRef = useRef<IntersectionObserver>()
@@ -169,9 +229,9 @@ const Index = () => {
   ]
 
   const stats = [
-    { value: "1000+", label: "документов в 2024" },
-    { value: "10+", label: "лет опыта" },
-    { value: "98%", label: "заказов в срок" }
+    { value: 1000, label: "документов в 2024", suffix: "+" },
+    { value: 10, label: "лет опыта", suffix: "+" },
+    { value: 98, label: "заказов в срок", suffix: "%" }
   ]
 
   const reviews = [
@@ -267,7 +327,26 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-blue-50 to-white py-20">
+      <section className="relative bg-gradient-to-br from-blue-50 via-white to-blue-50 py-20 overflow-hidden">
+        {/* Анимированный фон */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-300 rounded-full animate-pulse"></div>
+          <div className="absolute top-32 right-20 w-20 h-20 bg-blue-400 rounded-full animate-bounce delay-300"></div>
+          <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-blue-500 rounded-full animate-pulse delay-500"></div>
+          <div className="absolute top-1/2 right-1/3 w-24 h-24 bg-blue-200 rounded-full animate-bounce delay-700"></div>
+          <div className="absolute bottom-32 right-10 w-28 h-28 bg-blue-300 rounded-full animate-pulse delay-1000"></div>
+          
+          {/* Плавающие элементы */}
+          <div className="absolute top-20 left-1/2 transform -translate-x-1/2">
+            <div className="w-2 h-2 bg-blue-400 rounded-full animate-float"></div>
+          </div>
+          <div className="absolute top-40 left-1/3">
+            <div className="w-3 h-3 bg-blue-300 rounded-full animate-float-slow"></div>
+          </div>
+          <div className="absolute bottom-40 right-1/4">
+            <div className="w-2 h-2 bg-blue-500 rounded-full animate-float-reverse"></div>
+          </div>
+        </div>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -278,13 +357,22 @@ const Index = () => {
               <p className="text-xl text-gray-600 mb-8">
                 Подготовим все документы от 1 дня.
               </p>
-              <div className="flex flex-wrap gap-4 mb-8">
-                {stats.map((stat, index) => (
-                  <div key={index} className="text-center scroll-animate" style={{ animationDelay: `${index * 0.2}s` }}>
-                    <div className="text-3xl font-bold text-blue-600">{stat.value}</div>
-                    <div className="text-sm text-gray-500">{stat.label}</div>
-                  </div>
-                ))}
+              <div ref={statsRef} className="flex flex-wrap gap-8 mb-8">
+                {stats.map((stat, index) => {
+                  const AnimatedStat = () => {
+                    const count = useCountUp(stat.value, 2000, visibleStats[index])
+                    return (
+                      <div key={index} className="text-center scroll-animate transform hover:scale-110 transition-all duration-300" style={{ animationDelay: `${index * 0.2}s` }}>
+                        <div className="text-4xl font-bold text-blue-600 mb-2">
+                          <span className="tabular-nums">{count}</span>
+                          <span className="text-blue-500">{stat.suffix}</span>
+                        </div>
+                        <div className="text-sm text-gray-600 uppercase tracking-wide">{stat.label}</div>
+                      </div>
+                    )
+                  }
+                  return <AnimatedStat key={index} />
+                })}
               </div>
               <div className="flex flex-col sm:flex-row gap-4 scroll-animate">
                 <Button size="lg" className="bg-blue-600 hover:bg-blue-700 hover:scale-105 transition-all">
@@ -453,28 +541,67 @@ const Index = () => {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Отзывы клиентов</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">Реальные истории наших клиентов о том, как мы помогли им решить задачи с сертификацией</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {reviews.map((review, index) => (
-              <Card key={index} className="p-6 hover:shadow-lg hover:scale-105 transition-all scroll-animate" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="flex items-start mb-4">
-                  <Icon name="Quote" className="text-blue-600 mr-2 flex-shrink-0" size={20} />
-                  <p className="text-gray-700 leading-relaxed">{review.text}</p>
-                </div>
-                <div className="border-t pt-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-semibold text-gray-900">{review.author}</p>
-                      <p className="text-sm text-gray-500">{review.location}</p>
-                    </div>
-                    <div className="text-right">
-                      <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
-                        {review.type}
-                      </span>
-                    </div>
+          {/* Слайдер отзывов */}
+          <div className="relative max-w-4xl mx-auto">
+            <div className="overflow-hidden rounded-xl">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentReview * 100}%)` }}
+              >
+                {reviews.map((review, index) => (
+                  <div key={index} className="w-full flex-shrink-0 px-4">
+                    <Card className="p-8 text-center bg-white shadow-xl border-0">
+                      <div className="mb-6">
+                        <Icon name="Quote" className="text-blue-600 mx-auto mb-4" size={32} />
+                        <p className="text-lg text-gray-700 leading-relaxed italic">"{review.text}"</p>
+                      </div>
+                      <div className="border-t pt-6">
+                        <div className="flex items-center justify-center space-x-4">
+                          <div className="text-center">
+                            <p className="font-bold text-gray-900 text-lg">{review.author}</p>
+                            <p className="text-sm text-gray-500">{review.location}</p>
+                          </div>
+                        </div>
+                        <div className="mt-3">
+                          <span className="inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
+                            {review.type}
+                          </span>
+                        </div>
+                      </div>
+                    </Card>
                   </div>
-                </div>
-              </Card>
-            ))}
+                ))}
+              </div>
+            </div>
+            
+            {/* Индикаторы */}
+            <div className="flex justify-center space-x-2 mt-6">
+              {reviews.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentReview(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentReview === index ? 'bg-blue-600 scale-125' : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Стрелки навигации */}
+            <button
+              onClick={() => setCurrentReview((prev) => prev === 0 ? reviews.length - 1 : prev - 1)}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50 transition-all duration-300 hover:scale-110"
+            >
+              <Icon name="ChevronLeft" size={20} className="text-gray-600" />
+            </button>
+            
+            <button
+              onClick={() => setCurrentReview((prev) => (prev + 1) % reviews.length)}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50 transition-all duration-300 hover:scale-110"
+            >
+              <Icon name="ChevronRight" size={20} className="text-gray-600" />
+            </button>
+          </div>
           </div>
         </div>
       </section>
@@ -554,7 +681,29 @@ const Index = () => {
         </div>
       </footer>
 
-      {/* Online Chat */}
+      {/* Floating Contact Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button 
+          className="rounded-full w-16 h-16 shadow-2xl animate-pulse hover:animate-none transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transform hover:scale-110"
+          onClick={() => window.open('tel:+79889888559')}
+        >
+          <Icon name="Phone" size={24} className="text-white animate-bounce" />
+        </Button>
+        <div className="absolute -top-12 -left-16 bg-gray-900 text-white text-sm px-3 py-1 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+          Позвонить сейчас
+        </div>
+      </div>
+
+      {/* Floating WhatsApp Button */}
+      <div className="fixed bottom-24 right-6 z-50">
+        <Button 
+          className="rounded-full w-14 h-14 shadow-xl bg-green-500 hover:bg-green-600 transition-all duration-300 transform hover:scale-110"
+          onClick={() => window.open('https://wa.me/79889888559?text=Здравствуйте! Хочу узнать про сертификацию', '_blank')}
+        >
+          <Icon name="MessageCircle" size={20} className="text-white" />
+        </Button>
+      </div>
+
       {/* Calculator Dialog */}
       <Dialog open={showCalculator} onOpenChange={setShowCalculator}>
         <DialogContent className="max-w-md">
