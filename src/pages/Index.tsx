@@ -445,11 +445,11 @@ const Index = () => {
               <div className="space-y-2">
                 <div className="flex items-center hover:text-blue-400 transition-colors cursor-pointer">
                   <Icon name="Phone" className="mr-2" size={16} />
-                  <span>+7 (495) 123-45-67</span>
+                  <span>+7 9889888559</span>
                 </div>
                 <div className="flex items-center hover:text-blue-400 transition-colors cursor-pointer">
                   <Icon name="Mail" className="mr-2" size={16} />
-                  <span>info@certpro.ru</span>
+                  <span>sertecoprom@yandex.ru</span>
                 </div>
               </div>
             </div>
