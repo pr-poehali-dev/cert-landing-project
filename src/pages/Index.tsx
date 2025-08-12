@@ -152,10 +152,10 @@ const Index = () => {
   ]
 
   const benefits = [
-    { icon: "Clock", title: "Сроки от 1 дня", description: "Минимальное время оформления" },
-    { icon: "Shield", title: "Только аккредитованные органы", description: "Гарантия законности" },
-    { icon: "FileCheck", title: "Работа по договору", description: "Полная юридическая защита" },
-    { icon: "Zap", title: "Дистанционное оформление", description: "Не нужно приезжать в офис" }
+    { icon: "Clock", title: "Без отказов и блокировок", description: "Гарантируем прохождение всех проверок" },
+    { icon: "Shield", title: "Гарантия принятия маркетплейсом", description: "Документы примут с первого раза" },
+    { icon: "Package", title: "Для любых категорий товаров", description: "Работаем со всеми видами продукции" },
+    { icon: "Key", title: "Под ключ", description: "Полное сопровождение от заявки до получения" }
   ]
 
   const documents = [
