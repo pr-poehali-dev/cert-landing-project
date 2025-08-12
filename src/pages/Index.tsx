@@ -160,7 +160,7 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2 animate-fade-in-left">
             <Icon name="Shield" className="text-blue-600" size={32} />
-            <h1 className="text-2xl font-bold text-gray-900">CertPro</h1>
+            <h1 className="text-2xl font-bold text-gray-900">ГК СертЭкоПром</h1>
           </div>
           <nav className="hidden md:flex space-x-8">
             <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors">Услуги</a>
