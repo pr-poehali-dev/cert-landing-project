@@ -357,11 +357,14 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50 py-24 overflow-hidden">
-        {/* Декоративный фон */}
+        {/* Фоновое изображение */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50 rounded-full opacity-50 blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-50 rounded-full opacity-40 blur-2xl translate-y-1/2 -translate-x-1/4"></div>
-          <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-blue-100 rounded-full opacity-20 blur-2xl"></div>
+          <img
+            src="https://cdn.poehali.dev/projects/7e4dd7b4-8177-4ac3-84bb-34a8c611e3a5/files/b876740a-7560-4999-9a79-dc9c308b52d2.jpg"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/80 to-blue-50/85"></div>
         </div>
         <div className="container mx-auto px-4 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
