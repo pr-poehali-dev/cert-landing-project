@@ -319,34 +319,36 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-30 backdrop-blur-sm bg-white/95">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-2 animate-fade-in-left">
+      <header className="bg-white/95 border-b border-gray-100 sticky top-0 z-30 backdrop-blur-md shadow-sm">
+        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+          <div className="flex items-center space-x-3 animate-fade-in-left">
             <img 
               src="https://cdn.poehali.dev/files/0a530161-0435-431a-a1e0-85e903d56514.jpg" 
               alt="ГК СертЭкоПром" 
-              className="w-8 h-8 rounded-full"
+              className="w-10 h-10 rounded-full ring-2 ring-blue-100"
             />
             <div className="flex flex-col">
-              <h1 className="text-2xl font-bold text-gray-900 leading-tight">ГК СертЭкоПром</h1>
-              <span className="text-xs text-gray-500">работаем с 2015 года</span>
+              <span className="text-lg font-800 text-gray-900 leading-tight font-extrabold tracking-tight">ГК СертЭкоПром</span>
+              <span className="text-xs text-gray-400 font-medium">работаем с 2015 года</span>
             </div>
           </div>
           <nav className="hidden md:flex space-x-8">
-            <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors">Услуги</a>
-            <a href="#benefits" className="text-gray-700 hover:text-blue-600 transition-colors">Преимущества</a>
-            <a href="#faq" className="text-gray-700 hover:text-blue-600 transition-colors">FAQ</a>
+            <a href="#services" className="text-sm font-semibold text-gray-600 hover:text-blue-600 transition-colors">Услуги</a>
+            <a href="#benefits" className="text-sm font-semibold text-gray-600 hover:text-blue-600 transition-colors">Преимущества</a>
+            <a href="#faq" className="text-sm font-semibold text-gray-600 hover:text-blue-600 transition-colors">FAQ</a>
           </nav>
           <div className="flex space-x-2 animate-fade-in-right">
             <Button 
               variant="outline"
+              size="sm"
+              className="border-gray-200 text-gray-700 font-semibold hover:border-blue-300 hover:text-blue-600"
               onClick={() => window.open('https://t.me/SertEcoPromBot', '_blank')}
             >
-              <Icon name="Calculator" className="mr-2" size={16} />
+              <Icon name="Calculator" className="mr-2" size={15} />
               Калькулятор
             </Button>
-            <Button className="bg-blue-600 hover:bg-blue-700">
-            <Icon name="Phone" className="mr-2" size={16} />
+            <Button size="sm" className="bg-blue-600 hover:bg-blue-700 font-semibold shadow-sm">
+            <Icon name="Phone" className="mr-2" size={15} />
             Позвонить
           </Button>
           </div>
@@ -354,68 +356,59 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-blue-50 py-20 overflow-hidden">
-        {/* Анимированный фон */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-300 rounded-full animate-pulse"></div>
-          <div className="absolute top-32 right-20 w-20 h-20 bg-blue-400 rounded-full animate-bounce delay-300"></div>
-          <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-blue-500 rounded-full animate-pulse delay-500"></div>
-          <div className="absolute top-1/2 right-1/3 w-24 h-24 bg-blue-200 rounded-full animate-bounce delay-700"></div>
-          <div className="absolute bottom-32 right-10 w-28 h-28 bg-blue-300 rounded-full animate-pulse delay-1000"></div>
-          
-          {/* Плавающие элементы */}
-          <div className="absolute top-20 left-1/2 transform -translate-x-1/2">
-            <div className="w-2 h-2 bg-blue-400 rounded-full animate-float"></div>
-          </div>
-          <div className="absolute top-40 left-1/3">
-            <div className="w-3 h-3 bg-blue-300 rounded-full animate-float-slow"></div>
-          </div>
-          <div className="absolute bottom-40 right-1/4">
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-float-reverse"></div>
-          </div>
+      <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50 py-24 overflow-hidden">
+        {/* Декоративный фон */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50 rounded-full opacity-50 blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-50 rounded-full opacity-40 blur-2xl translate-y-1/2 -translate-x-1/4"></div>
+          <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-blue-100 rounded-full opacity-20 blur-2xl"></div>
         </div>
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-4 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <Badge className="mb-4 bg-blue-100 text-blue-800 animate-scale-in">Сертификация ТР ТС и ГОСТ Р</Badge>
-              <h1 className="text-5xl font-bold text-gray-900 mb-6">
-                Сертификаты для запуска и масштабирования производства
+              <Badge className="mb-5 bg-blue-100 text-blue-700 font-semibold px-3 py-1 text-sm animate-scale-in border-0">
+                <Icon name="Shield" size={13} className="mr-1.5 inline" />
+                Сертификация ТР ТС и ГОСТ Р
+              </Badge>
+              <h1 className="text-5xl lg:text-6xl font-black text-gray-900 mb-5 leading-[1.05] tracking-tight">
+                Сертификаты для запуска и масштабирования&nbsp;бизнеса
               </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Подготовим все документы от 1 дня.
+              <p className="text-xl text-gray-500 mb-10 leading-relaxed font-medium">
+                Подготовим все документы от&nbsp;<span className="text-blue-600 font-bold">1 дня</span>. Официально. Дистанционно.
               </p>
-              <div ref={statsRef} className="flex flex-wrap gap-8 mb-8">
+              <div ref={statsRef} className="flex flex-wrap gap-10 mb-10">
                 {stats.map((stat, index) => {
                   const AnimatedStat = () => {
                     const count = useCountUp(stat.value, 2000, visibleStats[index])
                     return (
-                      <div key={index} className="text-center scroll-animate transform hover:scale-110 transition-all duration-300" style={{ animationDelay: `${index * 0.2}s` }}>
-                        <div className="text-4xl font-bold text-blue-600 mb-2">
-                          <span className="tabular-nums">{count}</span>
-                          <span className="text-blue-500">{stat.suffix}</span>
+                      <div key={index} className="scroll-animate" style={{ animationDelay: `${index * 0.2}s` }}>
+                        <div className="stat-number text-4xl font-black text-blue-600 tabular-nums leading-none">
+                          {count}<span className="text-blue-400">{stat.suffix}</span>
                         </div>
-                        <div className="text-sm text-gray-600 uppercase tracking-wide">{stat.label}</div>
+                        <div className="text-xs text-gray-500 uppercase tracking-widest mt-1.5 font-semibold">{stat.label}</div>
                       </div>
                     )
                   }
                   return <AnimatedStat key={index} />
                 })}
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 scroll-animate">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 hover:scale-105 transition-all">
-                  Получить расчет
+              <div className="flex flex-col sm:flex-row gap-3 scroll-animate">
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 font-bold text-base px-8 shadow-md hover:shadow-lg transition-all">
+                  Получить расчёт
                 </Button>
-                <Button variant="outline" size="lg" onClick={() => setShowChat(true)} className="hover:scale-105 transition-all">
-                  <Icon name="MessageCircle" className="mr-2" size={16} />
+                <Button variant="outline" size="lg" onClick={() => setShowChat(true)} className="font-semibold text-base border-gray-200 hover:border-blue-300 hover:text-blue-600 transition-all">
+                  <Icon name="MessageCircle" className="mr-2" size={18} />
                   Онлайн-консультант
                 </Button>
               </div>
             </div>
-            <Card className="p-6 shadow-xl scroll-animate hover:shadow-2xl transition-shadow">
-              <h3 className="text-2xl font-semibold mb-4">Получите расчет за 5 минут</h3>
-              <form className="space-y-4" onSubmit={handleFormSubmit}>
+            <Card className="p-7 shadow-2xl scroll-animate border-0 ring-1 ring-gray-100">
+              <h3 className="text-2xl font-bold text-gray-900 mb-1">Получите расчёт за 5 минут</h3>
+              <p className="text-sm text-gray-400 mb-5 font-medium">Менеджер перезвонит в течение часа</p>
+              <form className="space-y-3" onSubmit={handleFormSubmit}>
                 <Input 
                   placeholder="Ваше имя" 
+                  className="h-11 font-medium"
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
                   required
@@ -423,6 +416,7 @@ const Index = () => {
                 <Input 
                   placeholder="Телефон" 
                   type="tel"
+                  className="h-11 font-medium"
                   value={formData.phone}
                   onChange={(e) => setFormData({...formData, phone: e.target.value})}
                   required
@@ -430,21 +424,24 @@ const Index = () => {
                 <Input 
                   placeholder="Email" 
                   type="email"
+                  className="h-11 font-medium"
                   value={formData.email}
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
                   required
                 />
                 <Textarea 
                   placeholder="Опишите вашу продукцию или вставьте ссылку"
+                  className="font-medium resize-none"
+                  rows={3}
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
                   required
                 />
-                <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 hover:scale-105 transition-all">
-                  Получить расчет
+                <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700 font-bold shadow-md">
+                  Получить расчёт →
                 </Button>
               </form>
-              <p className="text-xs text-gray-500 mt-4">
+              <p className="text-xs text-gray-400 mt-4 text-center">
                 Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
               </p>
             </Card>
@@ -453,23 +450,28 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-gray-50">
+      <section id="services" className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16 scroll-animate">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Для кого работаем</h2>
-            <p className="text-xl text-gray-600">Решаем задачи разных категорий клиентов</p>
+          <div className="text-center mb-14 scroll-animate">
+            <p className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-3">Наши клиенты</p>
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 tracking-tight">Для кого работаем</h2>
+            <p className="text-lg text-gray-500 font-medium max-w-lg mx-auto">Решаем задачи разных категорий клиентов</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <Card key={index} className="p-6 hover:shadow-lg transition-all hover:scale-105 scroll-animate" style={{ animationDelay: `${index * 0.2}s` }}>
+              <Card key={index} className="p-7 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 scroll-animate border-0 ring-1 ring-gray-100 bg-white" style={{ animationDelay: `${index * 0.15}s` }}>
                 <CardContent className="p-0">
-                  <Icon name={service.icon} className="text-blue-600 mb-4" size={48} />
-                  <h3 className="text-2xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <ul className="space-y-2">
+                  <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-5">
+                    <Icon name={service.icon} className="text-blue-600" size={28} />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1.5">{service.title}</h3>
+                  <p className="text-gray-500 mb-5 text-sm font-medium">{service.description}</p>
+                  <ul className="space-y-2.5">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-sm">
-                        <Icon name="Check" className="text-green-500 mr-2" size={16} />
+                      <li key={idx} className="flex items-center text-sm font-medium text-gray-700">
+                        <span className="w-5 h-5 bg-green-50 rounded-full flex items-center justify-center mr-2.5 flex-shrink-0">
+                          <Icon name="Check" className="text-green-600" size={12} />
+                        </span>
                         {feature}
                       </li>
                     ))}
@@ -482,13 +484,18 @@ const Index = () => {
       </section>
 
       {/* Problems & Benefits */}
-      <section className="py-20">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Problems */}
-            <div className="scroll-animate">
-              <h2 className="text-3xl font-bold text-red-600 mb-8">Боли без сертификатов</h2>
-              <div className="space-y-4">
+            <div className="scroll-animate bg-red-50 rounded-2xl p-8 border border-red-100">
+              <div className="flex items-center gap-3 mb-7">
+                <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
+                  <Icon name="AlertTriangle" className="text-red-500" size={20} />
+                </div>
+                <h2 className="text-2xl font-black text-gray-900 tracking-tight">Без сертификатов</h2>
+              </div>
+              <div className="space-y-3.5">
                 {[
                   "Партия готова, но нет сертификата — простаивает склад",
                   "Риски штрафов при проверках",
@@ -496,18 +503,25 @@ const Index = () => {
                   "Долгие сроки оформления",
                   "Риск поддельных документов"
                 ].map((problem, index) => (
-                  <div key={index} className="flex items-start hover:translate-x-2 transition-transform">
-                    <Icon name="X" className="text-red-500 mr-3 mt-1" size={16} />
-                    <span className="text-gray-700">{problem}</span>
+                  <div key={index} className="flex items-start gap-3 bg-white rounded-xl px-4 py-3 shadow-sm">
+                    <span className="w-5 h-5 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Icon name="X" className="text-red-500" size={11} />
+                    </span>
+                    <span className="text-gray-700 text-sm font-medium leading-snug">{problem}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Benefits */}
-            <div className="scroll-animate">
-              <h2 className="text-3xl font-bold text-green-600 mb-8">Выгоды с нами</h2>
-              <div className="space-y-4">
+            <div className="scroll-animate bg-green-50 rounded-2xl p-8 border border-green-100">
+              <div className="flex items-center gap-3 mb-7">
+                <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+                  <Icon name="CheckCircle" className="text-green-600" size={20} />
+                </div>
+                <h2 className="text-2xl font-black text-gray-900 tracking-tight">С нами</h2>
+              </div>
+              <div className="space-y-3.5">
                 {[
                   "Подбор правильного документа под продукцию",
                   "Минимальные сроки — от 1 дня",
@@ -515,9 +529,11 @@ const Index = () => {
                   "Полная юридическая значимость",
                   "Дистанционное оформление"
                 ].map((benefit, index) => (
-                  <div key={index} className="flex items-start hover:translate-x-2 transition-transform">
-                    <Icon name="Check" className="text-green-500 mr-3 mt-1" size={16} />
-                    <span className="text-gray-700">{benefit}</span>
+                  <div key={index} className="flex items-start gap-3 bg-white rounded-xl px-4 py-3 shadow-sm">
+                    <span className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Icon name="Check" className="text-green-600" size={11} />
+                    </span>
+                    <span className="text-gray-700 text-sm font-medium leading-snug">{benefit}</span>
                   </div>
                 ))}
               </div>
@@ -527,17 +543,20 @@ const Index = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section id="benefits" className="py-20 bg-blue-50">
+      <section id="benefits" className="py-24 bg-gradient-to-br from-blue-600 to-blue-800">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16 scroll-animate">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Почему нам доверяют</h2>
+          <div className="text-center mb-14 scroll-animate">
+            <p className="text-sm font-bold text-blue-200 uppercase tracking-widest mb-3">Наши преимущества</p>
+            <h2 className="text-4xl lg:text-5xl font-black text-white mb-4 tracking-tight">Почему нам доверяют</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {benefits.map((benefit, index) => (
-              <div key={index} className="text-center scroll-animate hover:scale-105 transition-transform" style={{ animationDelay: `${index * 0.1}s` }}>
-                <Icon name={benefit.icon} className="text-blue-600 mx-auto mb-4 hover:rotate-12 transition-transform" size={48} />
-                <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
+              <div key={index} className="bg-white/10 backdrop-blur rounded-2xl p-6 scroll-animate hover:bg-white/20 transition-all duration-300 border border-white/10" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="w-12 h-12 bg-white/15 rounded-xl flex items-center justify-center mb-4">
+                  <Icon name={benefit.icon} className="text-white" size={24} />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-1.5 leading-tight">{benefit.title}</h3>
+                <p className="text-blue-200 text-sm font-medium leading-relaxed">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -545,16 +564,19 @@ const Index = () => {
       </section>
 
       {/* Documents */}
-      <section className="py-20">
+      <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16 scroll-animate">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Документы, с которыми работаем</h2>
+          <div className="text-center mb-14 scroll-animate">
+            <p className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-3">Что оформляем</p>
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 tracking-tight">Документы, с которыми работаем</h2>
           </div>
-          <div className="flex flex-wrap justify-center gap-4 max-w-6xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
             {documents.map((doc, index) => (
-              <div key={index} className="bg-white rounded-lg px-6 py-4 shadow-md hover:shadow-lg hover:scale-105 transition-all scroll-animate flex items-center space-x-3" style={{ animationDelay: `${index * 0.1}s` }}>
-                <Icon name="FileText" className="text-blue-600 hover:bounce" size={24} />
-                <span className="font-semibold text-gray-800 whitespace-nowrap">{doc}</span>
+              <div key={index} className="bg-white rounded-xl px-5 py-3.5 shadow-sm hover:shadow-md transition-all duration-200 scroll-animate flex items-center gap-3 border border-gray-100 hover:border-blue-200 hover:-translate-y-0.5" style={{ animationDelay: `${index * 0.08}s` }}>
+                <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Icon name="FileText" className="text-blue-600" size={16} />
+                </div>
+                <span className="font-semibold text-gray-800 whitespace-nowrap text-sm">{doc}</span>
               </div>
             ))}
           </div>
@@ -562,38 +584,35 @@ const Index = () => {
       </section>
 
       {/* Reviews */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16 scroll-animate">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Отзывы клиентов</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Реальные истории наших клиентов о том, как мы помогли им решить задачи с сертификацией</p>
+          <div className="text-center mb-14 scroll-animate">
+            <p className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-3">Отзывы</p>
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 tracking-tight">Клиенты о нас</h2>
+            <p className="text-gray-500 max-w-xl mx-auto font-medium">Реальные истории о том, как мы помогли решить задачи с сертификацией</p>
           </div>
           {/* Слайдер отзывов */}
           <div className="relative max-w-4xl mx-auto">
-            <div className="overflow-hidden rounded-xl">
+            <div className="overflow-hidden rounded-2xl">
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${currentReview * 100}%)` }}
               >
                 {reviews.map((review, index) => (
-                  <div key={index} className="w-full flex-shrink-0 px-4">
-                    <Card className="p-8 text-center bg-white shadow-xl border-0">
-                      <div className="mb-6">
-                        <Icon name="Quote" className="text-blue-600 mx-auto mb-4" size={32} />
-                        <p className="text-lg text-gray-700 leading-relaxed italic">"{review.text}"</p>
+                  <div key={index} className="w-full flex-shrink-0 px-2">
+                    <Card className="p-10 text-center bg-white shadow-xl border-0 ring-1 ring-gray-100">
+                      <div className="mb-8">
+                        <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                          <Icon name="Quote" className="text-blue-500" size={22} />
+                        </div>
+                        <p className="text-lg text-gray-700 leading-relaxed font-medium max-w-2xl mx-auto">"{review.text}"</p>
                       </div>
-                      <div className="border-t pt-6">
-                        <div className="flex items-center justify-center space-x-4">
-                          <div className="text-center">
-                            <p className="font-bold text-gray-900 text-lg">{review.author}</p>
-                            <p className="text-sm text-gray-500">{review.location}</p>
-                          </div>
-                        </div>
-                        <div className="mt-3">
-                          <span className="inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
-                            {review.type}
-                          </span>
-                        </div>
+                      <div className="border-t border-gray-100 pt-6">
+                        <p className="font-bold text-gray-900 text-lg mb-0.5">{review.author}</p>
+                        <p className="text-sm text-gray-400 font-medium mb-3">{review.location}</p>
+                        <span className="inline-block bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">
+                          {review.type}
+                        </span>
                       </div>
                     </Card>
                   </div>
@@ -633,17 +652,18 @@ const Index = () => {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="py-20">
+      <section id="faq" className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16 scroll-animate">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Часто задаваемые вопросы</h2>
+          <div className="text-center mb-14 scroll-animate">
+            <p className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-3">FAQ</p>
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 tracking-tight">Частые вопросы</h2>
           </div>
-          <div className="max-w-3xl mx-auto scroll-animate">
+          <div className="max-w-3xl mx-auto scroll-animate space-y-3">
             <Accordion type="single" collapsible>
               {faqItems.map((item, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="hover:bg-white/50 transition-colors rounded-lg px-4">
-                  <AccordionTrigger className="text-left hover:no-underline">{item.question}</AccordionTrigger>
-                  <AccordionContent className="text-gray-600">{item.answer}</AccordionContent>
+                <AccordionItem key={index} value={`item-${index}`} className="bg-white rounded-xl border border-gray-100 px-5 shadow-sm data-[state=open]:shadow-md transition-shadow">
+                  <AccordionTrigger className="text-left hover:no-underline font-semibold text-gray-900 py-5">{item.question}</AccordionTrigger>
+                  <AccordionContent className="text-gray-500 font-medium pb-5 leading-relaxed">{item.answer}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -652,53 +672,53 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-gray-950 text-white py-14">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
             <div className="scroll-animate">
-              <div className="flex items-center space-x-2 mb-4">
+              <div className="flex items-center space-x-3 mb-4">
                 <img 
                   src="https://cdn.poehali.dev/files/0659d6da-acf0-4dd3-9b84-ee6832ab2b4f.jpg" 
                   alt="ГК СертЭкоПром Logo" 
-                  className="w-8 h-8 rounded-full"
+                  className="w-10 h-10 rounded-full ring-2 ring-white/10"
                 />
-                <h3 className="text-2xl font-bold">ГК СертЭкоПром</h3>
+                <span className="text-xl font-extrabold tracking-tight">ГК СертЭкоПром</span>
               </div>
-              <p className="text-gray-400">
+              <p className="text-gray-400 text-sm font-medium leading-relaxed">
                 Запустите или расширьте производство без бюрократических задержек
               </p>
             </div>
             <div className="scroll-animate">
-              <h4 className="text-lg font-semibold mb-4">Контакты</h4>
-              <div className="space-y-2">
-                <div className="flex items-center hover:text-blue-400 transition-colors cursor-pointer">
-                  <Icon name="Phone" className="mr-2" size={16} />
-                  <span>+7 9889888559</span>
-                </div>
-                <div className="flex items-center hover:text-blue-400 transition-colors cursor-pointer">
-                  <Icon name="Mail" className="mr-2" size={16} />
+              <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Контакты</h4>
+              <div className="space-y-3">
+                <a href="tel:+79889888559" className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors font-medium text-sm">
+                  <Icon name="Phone" size={15} />
+                  <span>+7 988 988-85-59</span>
+                </a>
+                <a href="mailto:sertecoprom@yandex.ru" className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors font-medium text-sm">
+                  <Icon name="Mail" size={15} />
                   <span>sertecoprom@yandex.ru</span>
-                </div>
+                </a>
               </div>
             </div>
             <div className="scroll-animate">
-              <h4 className="text-lg font-semibold mb-4">Гарантии</h4>
-              <ul className="text-gray-400 space-y-1">
-                <li>Официальные документы в реестре ФСА</li>
-                <li>Работа по договору</li>
-                <li>Конфиденциальность данных</li>
-                <li>Возврат при невыполнении условий</li>
+              <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Гарантии</h4>
+              <ul className="text-gray-400 space-y-2 text-sm font-medium">
+                <li className="flex items-center gap-2"><Icon name="Check" size={13} className="text-green-500" />Официальные документы в реестре ФСА</li>
+                <li className="flex items-center gap-2"><Icon name="Check" size={13} className="text-green-500" />Работа по договору</li>
+                <li className="flex items-center gap-2"><Icon name="Check" size={13} className="text-green-500" />Конфиденциальность данных</li>
+                <li className="flex items-center gap-2"><Icon name="Check" size={13} className="text-green-500" />Возврат при невыполнении условий</li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-6 text-center">
-            <p className="text-gray-400 text-sm">
-              © 2024 ГК СертЭкоПром. Все права защищены. | {' '}
+          <div className="border-t border-white/5 pt-6 text-center">
+            <p className="text-gray-500 text-xs font-medium">
+              © 2024 ГК СертЭкоПром. Все права защищены.{' '}·{' '}
               <a 
                 href="https://docs.google.com/document/d/19RKw5BdlbItv9b-OctCKNYx3yX6e2GNeH80mRmHY_mM/edit?usp=sharing" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 transition-colors underline"
+                className="text-blue-400 hover:text-blue-300 transition-colors"
               >
                 Политика конфиденциальности
               </a>
@@ -706,19 +726,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-
-      {/* Floating Contact Button */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <Button 
-          className="rounded-full w-16 h-16 shadow-2xl animate-pulse hover:animate-none transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transform hover:scale-110"
-          onClick={() => window.open('tel:+79889888559')}
-        >
-          <Icon name="Phone" size={24} className="text-white animate-bounce" />
-        </Button>
-        <div className="absolute -top-12 -left-16 bg-gray-900 text-white text-sm px-3 py-1 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-          Позвонить сейчас
-        </div>
-      </div>
 
       {/* Floating WhatsApp Button */}
       <div className="fixed bottom-24 right-6 z-50">
@@ -728,6 +735,19 @@ const Index = () => {
         >
           <Icon name="MessageCircle" size={20} className="text-white" />
         </Button>
+      </div>
+
+      {/* Floating Contact Button */}
+      <div className="fixed bottom-6 right-6 z-50 group">
+        <Button 
+          className="rounded-full w-14 h-14 shadow-xl hover:shadow-2xl transition-all duration-300 bg-blue-600 hover:bg-blue-700 transform hover:scale-110"
+          onClick={() => window.open('tel:+79889888559')}
+        >
+          <Icon name="Phone" size={20} className="text-white" />
+        </Button>
+        <div className="absolute -top-10 right-0 bg-gray-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
+          Позвонить сейчас
+        </div>
       </div>
 
       {/* Calculator Dialog */}
@@ -863,13 +883,7 @@ const Index = () => {
         </div>
       )}
 
-      {/* Floating Chat Button */}
-      <Button
-        className="fixed bottom-6 right-6 rounded-full w-12 h-12 bg-blue-600 hover:bg-blue-700 shadow-lg z-40 hover:scale-110 transition-all animate-bounce"
-        onClick={() => setShowChat(true)}
-      >
-        <Icon name="MessageCircle" size={24} />
-      </Button>
+
     </div>
   )
 }
