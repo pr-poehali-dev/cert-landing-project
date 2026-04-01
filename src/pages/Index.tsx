@@ -327,7 +327,10 @@ const Index = () => {
               alt="ГК СертЭкоПром" 
               className="w-8 h-8 rounded-full"
             />
-            <h1 className="text-2xl font-bold text-gray-900">ГК СертЭкоПром</h1>
+            <div className="flex flex-col">
+              <h1 className="text-2xl font-bold text-gray-900 leading-tight">ГК СертЭкоПром</h1>
+              <span className="text-xs text-gray-500">работаем с 2015 года</span>
+            </div>
           </div>
           <nav className="hidden md:flex space-x-8">
             <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors">Услуги</a>
